@@ -19,6 +19,8 @@
 
 YouTube: https://youtu.be/-KvxyqO-jJg
 
+RuTube: https://rutube.ru/video/private/c68d79abd4a353355b4c56e0c8ac681c/?p=wHFPfN-RPX8ep7hspWOC-w
+
 Описание страниц приложения:
 1) "Log In" и "Registration" - авторизация пользователя.
 2) "Activities" - записи по всем активностям пользователя. На странице вносятся данные в формате "активность - затраченное время - дата".
