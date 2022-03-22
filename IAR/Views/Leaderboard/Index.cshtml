@@ -1,0 +1,108 @@
+﻿@model IAR.Models.LeaderboardAgregateModel
+<!--Шаблон - List-->
+
+@*<p><a asp-action="Create">Create New</a></p>*@
+
+<!--Поле выбора Активности-->
+<form asp-action="UpdateLeaderboard">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<table class="table">
+		<tbody>
+			<tr>
+				<td style="border-top: none">
+					<select asp-for="Activity" class="form-control"
+							asp-items="@(new SelectList(@ViewBag.TableActivities))" required>
+						<option value="">Select Activity</option>
+					</select>
+				</td>
+
+				<td style="border-top: none">
+					<input type="submit" value="Update Table" class="btn btn-primary" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+
+
+<!--Данные текущего пользователя-->
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.CurrentUserPosition)
+			</th>
+
+			<th>
+				@Html.DisplayNameFor(model => model.CurrentUserName)
+			</th>
+
+			<th>
+				@Html.DisplayNameFor(model => model.CurrentUserHours)
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td>
+				@Html.DisplayFor(model => model.CurrentUserPosition)
+			</td>
+
+			<td>
+				@Html.DisplayFor(model => model.CurrentUserName)
+			</td>
+
+			<td>
+				@Html.DisplayFor(model => model.CurrentUserHours)
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<!--Таблица всех пользователей-->
+<table class="table">
+	<thead>
+		<tr>
+			<th style="position: sticky; background: white; top: -5px">
+				@Html.DisplayNameFor(model => model.LeaderboardItems[0].Position)
+			</th>
+
+			<th style="position: sticky; background: white; top: -5px">
+				@Html.DisplayNameFor(model => model.LeaderboardItems[0].Username)
+			</th>
+
+			<th style="position: sticky; background: white; top: -5px">
+				@Html.DisplayNameFor(model => model.LeaderboardItems[0].TimeSpent)
+			</th>
+
+			@*<th></th>*@
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var item in Model.LeaderboardItems)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Position)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Username)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.TimeSpent)
+				</td>
+
+				@*<td>
+						@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+						@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+						@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+					</td>*@
+			</tr>
+		}
+	</tbody>
+</table>

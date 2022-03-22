@@ -1,0 +1,70 @@
+﻿@model IAR.Models.GoalModel
+<!--Шаблон - Edit-->
+@*<h4>GoalModel</h4>
+	<hr />*@
+<div class="row">
+	<form asp-action="SelectActivity">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td style="border-top: none">
+						<label asp-for="Activity" class="control-label"></label>
+						@*<input asp-for="Activity" class="form-control" />*@
+						<select asp-for="Activity" class="form-control"
+								asp-items="@(new SelectList(@ViewBag.GoalActivities))" required>
+							<option value="">Select Activity</option>
+						</select>
+					</td>
+
+					<td style="border-top: none">
+						<label asp-for="CurrentUserHours" class="control-label"></label>
+						<div class="form-control">
+							@Html.DisplayFor(model => model.CurrentUserHours)
+						</div>
+					</td>
+
+					<td style="border-top: none">
+						<label asp-for="Goal" class="control-label"></label>
+						<div class="form-control">
+							@Html.DisplayFor(model => model.Goal)
+						</div>
+					</td>
+
+					<td style="border-top: none; vertical-align: bottom">
+						<input type="submit" value="Update Data" class="btn btn-primary" />
+					</td>
+
+					
+					@*<td style="border-top: none; vertical-align: bottom">
+						<input type="submit" value="Add New Goal" class="btn btn-primary" asp-action="AddNewGoal"/>
+					</td>*@
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
+
+@*<form asp-action="AddNewGoal">
+	<div class="row" style="padding: 0.75rem">
+		<input type="submit" value="Add New Goal" class="btn btn-primary" />
+	</div>
+</form>*@
+
+<!--Построение графика Начало-->
+@*Даём идентификатор "chartBox" div-контейнеру, чтобы в _Layout.cshtml набросить на него 
+необходимые свойства для нормального отображения - по умолчанию график слишком большой*@
+<div class="chartBox">
+	<canvas id="Goal"></canvas>
+</div>
+@{
+	ChartJSCore.Models.Chart chart = (ChartJSCore.Models.Chart)ViewData["goal"];
+}
+@section Scripts
+{
+	<script src="~/lib/Chart.js/dist/Chart.js"></script>
+	<script>
+        @Html.Raw(chart.CreateChartCode("Goal"));
+	</script>
+}
+<!--Построение графика Конец-->

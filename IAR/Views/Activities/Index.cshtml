@@ -1,0 +1,116 @@
+﻿@model IEnumerable<IAR.Models.ActivityModel>
+<!--Пагинация 1/2 - Начало. Объявление и инициализация переменных для этой страницы из сформированного в контроллере вьюбэга.-->
+@{
+	PagerModel pager = new PagerModel();
+
+	int pageNo = 0;
+
+	if (ViewBag.Pager != null)
+	{
+		pager = ViewBag.Pager;
+		pageNo = pager.CurrentPage;
+	}
+}
+<!--Пагинация 1/2 - Конец.-->
+
+
+<form asp-action="Addition">
+	<div class="form-group">
+		<input type="submit" value="Add New" class="btn btn-primary" />
+	</div>
+</form>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th style="position: sticky; background: white; top: -5px">
+				@Html.DisplayNameFor(model => model.Activity)
+			</th>
+			<th style="position: sticky; background: white; top: -5px">
+				@Html.DisplayNameFor(model => model.Activity_duration)
+			</th>
+			<th style="position: sticky; background: white; top: -5px">
+				@Html.DisplayNameFor(model => model.Date_value)
+			</th>
+			<th style="position: sticky; background: white; top: -5px">
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Activity)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Activity_duration)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Date_value)
+				</td>
+				<td>
+					<!--@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |-->
+					<!--@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |-->
+					@Html.ActionLink("Delete", "DeleteDataFromActivities",
+						new
+							 {
+							Id = item.Id,
+							Username = item.Username,
+							Activity = item.Activity,
+							Activity_duration = item.Activity_duration,
+							Date_value = item.Date_value
+						}
+					)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+
+
+<!--Пагинация 2/2 - Начало. Добавление элементов на страницу.-->
+<div class="container">
+	@if (pager.TotalPages > 0)
+	 {
+		<ul class="pagination justify-content-end">
+
+			<!--Кнопки Первая и Предыдущая-->
+			@if (pager.CurrentPage > 1)
+			 {
+				<li class="page-item">
+					<a class="page-link" asp-controller="Activities" asp-action="Index" asp-route-pg="1">First</a>
+				</li>
+
+				<li class="page-item">
+					<a class="page-link" asp-controller="Activities" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+				</li>
+			 }
+
+
+			<!--Массив номеров страниц-->
+			@for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+			 {
+				<li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+					<a class="page-link" asp-controller="Activities" asp-action="Index" asp-route-pg="@pge"> @pge  </a>
+				</li>
+			 }
+
+
+			<!--Кнопки Следующая и Последняя-->
+			@if (pager.CurrentPage < pager.TotalPages)
+			 {
+				<li class="page-item">
+					<a class="page-link" asp-controller="Activities" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+				</li>
+
+				<li class="page-item">
+					<a class="page-link" asp-controller="Activities" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+				</li>
+			 }
+		</ul>
+	 }
+</div>
+<!--Пагинация 2/2 - Конец.-->

@@ -1,0 +1,64 @@
+﻿@model IAR.Models.ChartModel
+
+@*<h4>ChartModel</h4>
+<hr />*@
+<div class="row">	
+	<form asp-action="UpdateChart">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<table class="table">
+			<tbody>				
+				<tr>
+					<td style="border-top: none">
+						<label asp-for="Activity" class="control-label"></label>
+						<select asp-for="Activity" class="form-control"
+								asp-items="@(new SelectList(@ViewBag.ChartActivities))" required>
+							<option value="">Select Activity</option>
+						</select>
+						<span asp-validation-for="Activity" class="text-danger"></span>
+					</td>
+
+					<td style="border-top: none">
+						<label asp-for="Period" class="control-label"></label>
+						<select asp-for="Period" class="form-control"
+								asp-items="@(new SelectList(@ViewBag.ChartPeriods))" required>
+							<option value="">Select Period</option>
+						</select>
+						<span asp-validation-for="Period" class="text-danger"></span>
+					</td>
+
+					<td style="border-top: none">
+						<label asp-for="Year" class="control-label"></label>
+						<select asp-for="Year" class="form-control"
+								asp-items="@(new SelectList(@ViewBag.ChartYears))" required>
+							<option value="">Select Year</option>
+						</select>
+						<span asp-validation-for="Year" class="text-danger"></span>
+					</td>
+
+					<td style="border-top: none; vertical-align: bottom">
+						<input type="submit" value="Update Chart" class="btn btn-primary" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
+
+<!--Построение графика Начало-->
+<div><canvas id="barChart"></canvas></div>
+@{
+	ChartJSCore.Models.Chart chart = (ChartJSCore.Models.Chart)ViewData["chart"];
+}
+@section Scripts
+{
+	<script src="~/lib/Chart.js/dist/Chart.js"></script>
+	<script>
+        @Html.Raw(chart.CreateChartCode("barChart"));
+	</script>
+}
+<!--Построение графика Конец-->
+
+@*<div>
+	<a asp-action="Index">Back to List</a>
+</div>*@
+

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<IAR.Models.GoalModel>
+
+<form asp-action="AddNewGoal">
+	<div class="form-group">
+		<input type="submit" value="Add New" class="btn btn-primary" />
+	</div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>            
+            <th>
+                @Html.DisplayNameFor(model => model.Activity)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Goal)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+@foreach (var item in Model) {
+        <tr>            
+            <td>
+                @Html.DisplayFor(modelItem => item.Activity)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Goal)
+            </td>  
+            
+		    <td>			
+			    @Html.ActionLink("Edit", "EditGoal", new { Id = item.Id, Activity = item.Activity, Goal = item.Goal }) |
+			    @Html.ActionLink("Delete", "DeleteGoal", new { Id = item.Id }) @*будем удалять только по Id-шнику*@
+		    </td>
+        </tr>}
+    </tbody>
+</table>
