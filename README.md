@@ -11,8 +11,8 @@
 Приложение разработано в качестве итоговой аттестационной работы в рамках программы профессиональной переподготовки в МГТУ им. Н.Э. Баумана.
 
 Видео-демонстрация UI и функционала:
-1) YouTube: https://youtu.be/-KvxyqO-jJg
-2) RuTube: https://rutube.ru/video/private/0677d90637778fdf354b9f933c859988/?p=Sl3bKOBIkddbBhn6NUERiA
+
+YouTube: https://youtu.be/-KvxyqO-jJg
 
 Описание страниц приложения:
 1) "Log In" и "Registration" - авторизация пользователя.
