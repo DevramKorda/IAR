@@ -1,15 +1,18 @@
 Многопользовательское веб-приложение для трекинга активностей на ASP.NET Core MVC.
 
-Видео-демонстрация UI и функционала:
-YouTube: https://youtu.be/-KvxyqO-jJg
-RuTube: https://rutube.ru/video/private/0677d90637778fdf354b9f933c859988/?p=Sl3bKOBIkddbBhn6NUERiA
-
 Назначение: отслеживание затрат времени на различные виды деятельности, постановка целей, предоставление данных в удобном и наглядном виде.
+
 Использовано: Visual Studio 2019, .NET 5.0, ASP.NET Core MVC, C#, HTML, SQL Server Express, Entity Framework, LINQ, ChartJSCore, Bootstrap.
+
 Автор: Марк Музыка.
+
 Дата разработки: 23 декабря 2021 года.
 
 Приложение разработано в качестве итоговой аттестационной работы в рамках программы профессиональной переподготовки в МГТУ им. Н.Э. Баумана.
+
+Видео-демонстрация UI и функционала:
+1) YouTube: https://youtu.be/-KvxyqO-jJg
+2) RuTube: https://rutube.ru/video/private/0677d90637778fdf354b9f933c859988/?p=Sl3bKOBIkddbBhn6NUERiA
 
 Описание страниц приложения:
 1) "Log In" и "Registration" - авторизация пользователя.
